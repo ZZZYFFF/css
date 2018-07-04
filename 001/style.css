@@ -1,0 +1,58 @@
+/*按钮居中*/
+html,body{
+    height: 100%;
+    display: flex;
+    /*申明使用弹性盒模型布局*/
+    align-items: center;
+    justify-content: center;
+}
+/*设置按钮的尺寸和文字样式*/
+.box{
+    width: 200px;
+    height: 60px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px;
+    font-family: sans-serif;
+}
+
+.box span {
+    display: inline-block;
+    color: blue;
+}
+/*把字母交错地显示在按钮容器之外，
+第奇数个元素显示在上，第偶数个元素显示在下*/
+.box span:nth-child(odd) {
+    transform: translateY(-100%);
+}
+
+.box span:nth-child(even) {
+    transform: translateY(100%);
+}
+/*用伪元素为每个字母增加一个副本*/
+.box span::before {
+    content: attr(data-text);
+    position: absolute;
+    color: red;
+}
+/*让伪元素的字母也交错显示，位置与其原始元素相对*/
+.box span:nth-child(odd)::before {
+    transform: translateY(100%);
+}
+
+.box span:nth-child(even)::before {
+    transform: translateY(-100%);
+}
+/*为按钮增加鼠标划过样式，设置緩动时间，使其有动画效果*/
+.box:hover span {
+    transform: translateY(0);
+}
+
+.box span {
+    transition: 0.5s;
+}
+
+.box {
+    overflow: hidden;
+}
